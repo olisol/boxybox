@@ -28,6 +28,6 @@
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <h1 class="text-white">boxy box</h1>
     </div>
-	<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p>A more human design</p></div>
+	<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p>Imperfect design from real people.</p></div>
 </div>
 </section>
