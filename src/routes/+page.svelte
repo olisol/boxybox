@@ -1,57 +1,34 @@
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="BoxyBox. Simple design studio" />
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
+	<div class="container mx-auto bg-slate-500">
+	<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+		<svg
+			class="hover:animate-spin-fast"
+			width="173"
+			height="173"
+			viewBox="0 0 173 173"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<rect
+				x="0.302589"
+				y="86.6185"
+				width="121.902"
+				height="121.902"
+				transform="rotate(-45 0.302589 86.6185)"
+				fill="black"
+			/>
+		</svg>
+	</div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <h1 class="text-white">boxy box</h1>
+    </div>
+</div>
 </section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
