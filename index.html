@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BoxyBox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000;
+      --white: #fff;
+      --border: #383838;
+      --gray: #767676;
+      --font: 'Quicksand', sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 30px 30px 10px;
+    }
+
+    /* ── LOGO ── */
+    .logo-wrap {
+      padding-bottom: 30px;
+    }
+
+    .logo {
+      width: 172px;
+      height: 172px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .logo-diamond {
+      width: 116px;
+      height: 128px;
+      position: absolute;
+      left: 0;
+      top: 82px;
+      background: var(--black);
+      transform: rotate(-45deg);
+      transform-origin: top left;
+    }
+
+    .logo-text {
+      position: absolute;
+      left: 47px;
+      top: 74px;
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 700;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    /* ── MAIN GRID ── */
+    .main-grid {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding-bottom: 30px;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .col-left {
+      width: 368px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col-left .intro {
+      border-top: 0.5px solid var(--border);
+      padding: 30px 20px 30px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .intro-heading {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 36px;
+    }
+
+    .intro-body {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1px;
+      padding: 12px 10px;
+      background: var(--black);
+      border-top: 0.5px solid var(--border);
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      width: 338px;
+    }
+
+    .email-btn:hover { opacity: 0.8; }
+
+    .email-btn span {
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 21px;
+    }
+
+    .email-btn .arrow {
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ── RIGHT COLUMN ── */
+    .col-right {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ── SERVICE ROW ── */
+    .service-row {
+      border-top: 0.5px solid var(--border);
+      padding: 30px 0 0 20px;
+      display: flex;
+      gap: 37px;
+      align-items: flex-start;
+    }
+
+    .service-info {
+      width: 286px;
+      flex-shrink: 0;
+      padding-bottom: 30px;
+      padding-right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .service-title {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 36px;
+    }
+
+    .service-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      background: #e8e8e8;
+    }
+
+    .project-img.gradient {
+      background: linear-gradient(180deg, #484848 0%, #AEAEAE 100%);
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-meta {
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .project-title {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 36px;
+    }
+
+    .project-sub {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .see-project {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 4px 0;
+      color: var(--gray);
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .see-project:hover { color: var(--black); }
+
+    /* ── HOW WE WORK SECTION ── */
+    .how-grid {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .how-left {
+      width: 368px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .how-intro {
+      border-top: 0.5px solid var(--border);
+      padding: 30px 40px 30px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .how-heading {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 30px;
+    }
+
+    .how-body {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .how-body strong { font-weight: 700; }
+
+    .email-btn-2 {
+      display: inline-flex;
+      align-items: center;
+      gap: 1px;
+      padding: 12px 10px;
+      background: var(--black);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .email-btn-2:hover { opacity: 0.8; }
+    .email-btn-2 span { color: var(--white); font-size: 15px; font-weight: 400; }
+
+    /* ── HOW RIGHT ── */
+    .how-right {
+      flex: 1;
+      min-width: 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .how-item {
+      border-top: 0.5px solid var(--border);
+      padding: 30px 20px 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .how-item-title {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 30px;
+    }
+
+    .how-item-body {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .how-item-body strong { font-weight: 700; }
+
+    /* ── TRUSTED BY ── */
+    .trusted {
+      border-top: 0.5px solid var(--border);
+      padding: 16px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 37px;
+    }
+
+    .trusted-label {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 15.6px;
+    }
+
+    .trusted-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .trusted-logos .logo-placeholder {
+      height: 50px;
+      background: #ccc;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #888;
+      padding: 0 12px;
+      min-width: 80px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-bar {
+      border-top: 0.5px solid var(--border);
+      height: 120px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 20px;
+    }
+
+    .contact-link {
+      font-size: 24px;
+      font-weight: 600;
+      text-decoration: underline;
+      color: var(--black);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .contact-link:hover { opacity: 0.5; }
+
+    /* ── HOVER EFFECTS ── */
+    .service-row { transition: background 0.2s; }
+    .service-row:hover { background: #fafafa; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-wrap, .main-grid, .how-grid {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .main-grid { animation-delay: 0.1s; }
+    .how-grid  { animation-delay: 0.2s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .main-grid, .how-grid { flex-direction: column; }
+      .col-left, .how-left { width: 100%; }
+      .email-btn { width: 100%; }
+      .service-row { flex-direction: column; }
+      .service-info { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <div class="logo">
+      <div class="logo-diamond"></div>
+      <div class="logo-text">boxy box</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- LEFT -->
+    <div class="col-left">
+      <div class="intro">
+        <div class="intro-heading">Transforming complexity into compelling design experiences</div>
+        <div class="intro-body">We partner with investigative journalists, human rights organizations, and research institutions to transform complex investigations into clear, compelling stories—with the domain knowledge, technical capability, and ethical awareness this work demands.</div>
+      </div>
+      <a class="email-btn" href="mailto:hi@boxybox.me">
+        <span>hi@boxybox.me</span>
+        <span class="arrow"> ↗</span>
+      </a>
+    </div>
+
+    <!-- RIGHT: services -->
+    <div class="col-right">
+
+      <!-- Service 1 -->
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-title">Data Interfaces for Justice</div>
+          <div class="service-desc">Building interfaces and digital experiences that provide human-centered access to complex data.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://placehold.co/711x579/e0e0e0/aaa?text=Project+Image" alt="Testimonies of police brutality" />
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Testimonies of police brutality</div>
+            <div class="project-sub">A data verification tool for Mnemonic OSINT investigations.</div>
+            <a class="see-project" href="#">See Project →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-title">UI & UX for research</div>
+          <div class="service-desc">Building interfaces and digital experiences that provide human-centered access to complex data.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-img gradient">
+            <img src="https://placehold.co/420x303/transparent/fff?text=Elfeherest" alt="Elfeherest" style="object-fit:contain; padding: 20px;" />
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Elfeherest</div>
+            <div class="project-sub">A data verification tool for Mnemonic OSINT investigations.</div>
+            <a class="see-project" href="#">See Project →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-title">Digital Product Development</div>
+          <div class="service-desc">Build complete digital products from concept to launch, handling design, and development.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://placehold.co/534x325/e0e0e0/aaa?text=Eva+Platform" alt="Eva platform" />
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Eva platform</div>
+            <div class="project-sub">Eva is a company self-assessment tool that applies complex methodologies WBA's tried and proven methodologies.</div>
+            <a class="see-project" href="#">See Project →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-title">Data Visualization & Storytelling</div>
+          <div class="service-desc">Transform investigative stories into accessible, interactive narratives.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://placehold.co/973x593/e0e0e0/aaa?text=24+Cases" alt="24 cases of privatization" />
+          </div>
+          <div class="project-meta">
+            <div class="project-title">24 cases of privatization</div>
+            <div class="project-sub">A data verification tool for Mnemonic OSINT investigations.</div>
+            <a class="see-project" href="#">See Project →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-title">Discovery & Branding</div>
+          <div class="service-desc">Guide organizations through brand identity and coherent visual solution for their concept or product.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://placehold.co/650x323/e0e0e0/aaa?text=Dark+Crystal" alt="Dark Crystal" />
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Dark Crystal</div>
+            <div class="project-sub">A data verification tool for Mnemonic OSINT investigations.</div>
+            <a class="see-project" href="#">See Project →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /main-grid -->
+
+  <!-- HOW WE WORK -->
+  <div class="how-grid">
+
+    <!-- LEFT -->
+    <div class="how-left">
+      <div class="how-intro">
+        <div class="how-heading">How We Work</div>
+        <div class="how-body">We've spent over a decade in this space—working with <strong>human rights organizations</strong>, <strong>investigative journalists</strong>, and <strong>independent researchers</strong> across US and European organizations.</div>
+      </div>
+      <a class="email-btn-2" href="mailto:hi@boxybox.me">
+        <span>hi@boxybox.me</span>
+        <span class="arrow" style="color:white"> ↗</span>
+      </a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="how-right">
+
+      <div class="how-item">
+        <div class="how-item-title">You don't have to explain your world.</div>
+        <div class="how-item-body">We already understand complexity, from OSINT investigations, AI ethics, war crime documentation, policy research. Less time onboarding, more time solving problems. We will be at the center of your data, and hand in hand with your process.</div>
+      </div>
+
+      <div class="how-item">
+        <div class="how-item-title">One person, start to finish, and as many as needed.</div>
+        <div class="how-item-body">From first conversation to final delivery, you work with the same person who handles strategy, design, and development coordination. No lost context, no delays. <strong>We scale up, we iterate, we adapt.</strong></div>
+      </div>
+
+      <div class="how-item">
+        <div class="how-item-title">You own the work.</div>
+        <div class="how-item-body">Clean handovers and knowledge transfer. We want you to maintain and evolve the work independently. We won't build dependencies, but we're always one email away.</div>
+      </div>
+
+      <!-- Trusted by -->
+      <div class="trusted">
+        <div class="trusted-label">Trusted by</div>
+        <div class="trusted-logos">
+          <div class="logo-placeholder">Client 1</div>
+          <div class="logo-placeholder">Client 2</div>
+          <div class="logo-placeholder">Client 3</div>
+          <div class="logo-placeholder">Client 4</div>
+          <div class="logo-placeholder">Client 5</div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="contact-bar">
+        <a class="contact-link" href="mailto:hi@boxybox.me">Contact me</a>
+      </div>
+
+    </div>
+  </div><!-- /how-grid -->
+
+</div><!-- /page -->
+</body>
+</html>
